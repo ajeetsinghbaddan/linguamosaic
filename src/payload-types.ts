@@ -112,10 +112,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -201,7 +203,821 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | {
+        headingMain: string;
+        headingAccent: string;
+        subtext?: string | null;
+        primaryButton?: {
+          label?: string | null;
+          url?: string | null;
+        };
+        secondaryButton?: {
+          label?: string | null;
+          url?: string | null;
+        };
+        languageTags?:
+          | {
+              flag?: string | null;
+              name?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        moreLanguagesCount?: number | null;
+        satisfactionCard?: {
+          label?: string | null;
+          value?: string | null;
+          subtext?: string | null;
+        };
+        experienceCard?: {
+          label?: string | null;
+          value?: string | null;
+          badge?: string | null;
+        };
+        chartTitle?: string | null;
+        chartBars?:
+          | {
+              code?: string | null;
+              language?: string | null;
+              percentage?: number | null;
+              color?: ('sage' | 'brown' | 'yellow' | 'lightGreen') | null;
+              id?: string | null;
+            }[]
+          | null;
+        statsRow?:
+          | {
+              value?: string | null;
+              label?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroStats';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        statCard?: {
+          number?: string | null;
+          description?: string | null;
+          badges?:
+            | {
+                text?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        paragraphs?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        primaryButton?: {
+          label?: string | null;
+          url?: string | null;
+        };
+        phone?: {
+          label?: string | null;
+          number?: string | null;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutIntro';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        subtext?: string | null;
+        languages?:
+          | {
+              code: string;
+              name: string;
+              level?: string | null;
+              tags?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'languagesOffered';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        subtext?: string | null;
+        tabs?:
+          | {
+              tabLabel: string;
+              cards?:
+                | {
+                    title: string;
+                    price: string;
+                    priceSuffix?: string | null;
+                    featured?: boolean | null;
+                    details?:
+                      | {
+                          label?: string | null;
+                          value?: string | null;
+                          id?: string | null;
+                        }[]
+                      | null;
+                    buttonLabel?: string | null;
+                    buttonUrl?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'coursesPrograms';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        steps?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'processSteps';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        subtext?: string | null;
+        instructors?:
+          | {
+              photo?: (string | null) | Media;
+              name: string;
+              languages?: string | null;
+              bio?: string | null;
+              profileUrl?: string | null;
+              testimonial?: {
+                quote?: string | null;
+                rating?: number | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faculty';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        testimonials?:
+          | {
+              quote: string;
+              avatar?: (string | null) | Media;
+              name: string;
+              meta?: string | null;
+              rating?: number | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'studentStories';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        yearlyDiscountLabel?: string | null;
+        plans?:
+          | {
+              label: string;
+              featured?: boolean | null;
+              monthlyPrice: string;
+              yearlyPrice: string;
+              priceSuffix?: string | null;
+              yearlySuffix?: string | null;
+              features?:
+                | {
+                    text: string;
+                    included?: boolean | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              buttonLabel?: string | null;
+              buttonUrl?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricing';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        certifications?:
+          | {
+              icon?: (string | null) | Media;
+              emoji?: string | null;
+              name: string;
+              meta?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'certifications';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        subtext?: string | null;
+        questions?:
+          | {
+              question: string;
+              options?:
+                | {
+                    text: string;
+                    score?: number | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        results?:
+          | {
+              minScore: number;
+              maxScore: number;
+              emoji?: string | null;
+              level: string;
+              recommendation?: string | null;
+              recommendationUrl?: string | null;
+              description?: string | null;
+              ctaLabel?: string | null;
+              ctaUrl?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'selfAssessment';
+      }
+    | {
+        eyebrow?: string | null;
+        heading: string;
+        /**
+         * Select a form created in the Forms collection.
+         */
+        form: string | Form;
+        locationName?: string | null;
+        locationAddress?: string | null;
+        mapUrl?: string | null;
+        phone?: string | null;
+        email?: string | null;
+        hours?: string | null;
+        socials?:
+          | {
+              platform: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'youtube';
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contact';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutHero';
+      }
+    | {
+        missionEyebrow?: string | null;
+        missionHeading?: string | null;
+        missionText?: string | null;
+        visionEyebrow?: string | null;
+        visionHeading?: string | null;
+        visionText?: string | null;
+        values?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutMission';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        milestones?:
+          | {
+              year: string;
+              title: string;
+              description?: string | null;
+              emoji?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutTimeline';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        subtext?: string | null;
+        members?:
+          | {
+              photo?: (string | null) | Media;
+              name: string;
+              role: string;
+              bio?: string | null;
+              languages?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutTeam';
+      }
+    | {
+        heading?: string | null;
+        subtext?: string | null;
+        primaryLabel?: string | null;
+        primaryUrl?: string | null;
+        secondaryLabel?: string | null;
+        secondaryUrl?: string | null;
+        badges?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'aboutCta';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        searchPlaceholder?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'languagesHero';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        filterLabel?: string | null;
+        languages?:
+          | {
+              flag?: string | null;
+              code: string;
+              name: string;
+              nativeName?: string | null;
+              region?: string | null;
+              level?: string | null;
+              students?: string | null;
+              instructors?: number | null;
+              tags?:
+                | {
+                    tag?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              featured?: boolean | null;
+              url?: string | null;
+              color?: ('sage' | 'brown' | 'yellow' | 'black') | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'languagesGrid';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        features?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'languageWhy';
+      }
+    | {
+        heading?: string | null;
+        subtext?: string | null;
+        primaryLabel?: string | null;
+        primaryUrl?: string | null;
+        secondaryLabel?: string | null;
+        secondaryUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'languageCta';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'coursesHero';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        courses?:
+          | {
+              flag?: string | null;
+              language: string;
+              title: string;
+              format?: ('group' | 'private' | 'intensive' | 'online' | 'business') | null;
+              level?: string | null;
+              duration?: string | null;
+              sessions?: string | null;
+              classSize?: string | null;
+              price: string;
+              pricePeriod?: string | null;
+              featured?: boolean | null;
+              url?: string | null;
+              tags?:
+                | {
+                    tag?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              highlights?:
+                | {
+                    text?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'coursesList';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        formats?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              bestFor?: string | null;
+              price?: string | null;
+              featured?: boolean | null;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'coursesCompare';
+      }
+    | {
+        heading?: string | null;
+        subtext?: string | null;
+        primaryLabel?: string | null;
+        primaryUrl?: string | null;
+        secondaryLabel?: string | null;
+        secondaryUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'coursesCta';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'facultyHero';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        instructors?:
+          | {
+              photo?: (string | null) | Media;
+              name: string;
+              role?: string | null;
+              languages?: string | null;
+              experience?: string | null;
+              nationality?: string | null;
+              bio?: string | null;
+              profileUrl?: string | null;
+              specialisms?:
+                | {
+                    tag?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              certifications?:
+                | {
+                    cert?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              testimonial?: {
+                quote?: string | null;
+                studentName?: string | null;
+                studentMeta?: string | null;
+                rating?: number | null;
+              };
+              featured?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'facultyGrid';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        subtext?: string | null;
+        standards?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'facultyPhilosophy';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        subtext?: string | null;
+        perks?:
+          | {
+              icon?: string | null;
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaLabel?: string | null;
+        ctaUrl?: string | null;
+        secondaryLabel?: string | null;
+        secondaryUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'facultyJoin';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingHero';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        yearlyDiscountLabel?: string | null;
+        plans?:
+          | {
+              label: string;
+              description?: string | null;
+              featured?: boolean | null;
+              monthlyPrice: string;
+              yearlyPrice: string;
+              priceSuffix?: string | null;
+              yearlySuffix?: string | null;
+              features?:
+                | {
+                    text: string;
+                    included?: boolean | null;
+                    highlight?: boolean | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              buttonLabel?: string | null;
+              buttonUrl?: string | null;
+              badge?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingPlans';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        subtext?: string | null;
+        addons?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              price: string;
+              pricePeriod?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingAddOns';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        faqs?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingFaq';
+      }
+    | {
+        heading?: string | null;
+        subtext?: string | null;
+        guarantees?:
+          | {
+              icon?: string | null;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        ctaLabel?: string | null;
+        ctaUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingGuarantee';
+      }
+    | {
+        heading?: string | null;
+        subtext?: string | null;
+        primaryLabel?: string | null;
+        primaryUrl?: string | null;
+        secondaryLabel?: string | null;
+        secondaryUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingCta';
+      }
+    | {
+        eyebrow?: string | null;
+        headingMain: string;
+        headingAccent?: string | null;
+        subtext?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contactHero';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        subtext?: string | null;
+        form: string | Form;
+        locationName?: string | null;
+        locationAddress?: string | null;
+        mapUrl?: string | null;
+        contactDetails?:
+          | {
+              type: 'phone' | 'email' | 'hours' | 'whatsapp';
+              label?: string | null;
+              value: string;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        socials?:
+          | {
+              platform: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'youtube';
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contactFormSection';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        offices?:
+          | {
+              emoji?: string | null;
+              name: string;
+              address: string;
+              phone?: string | null;
+              email?: string | null;
+              hours?: string | null;
+              mapUrl?: string | null;
+              featured?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contactOffices';
+      }
+    | {
+        eyebrow?: string | null;
+        heading?: string | null;
+        faqs?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contactFaq';
+      }
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -1089,6 +1905,867 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        heroStats?:
+          | T
+          | {
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              primaryButton?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              secondaryButton?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              languageTags?:
+                | T
+                | {
+                    flag?: T;
+                    name?: T;
+                    id?: T;
+                  };
+              moreLanguagesCount?: T;
+              satisfactionCard?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    subtext?: T;
+                  };
+              experienceCard?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    badge?: T;
+                  };
+              chartTitle?: T;
+              chartBars?:
+                | T
+                | {
+                    code?: T;
+                    language?: T;
+                    percentage?: T;
+                    color?: T;
+                    id?: T;
+                  };
+              statsRow?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutIntro?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              statCard?:
+                | T
+                | {
+                    number?: T;
+                    description?: T;
+                    badges?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                  };
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              primaryButton?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              phone?:
+                | T
+                | {
+                    label?: T;
+                    number?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        languagesOffered?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              languages?:
+                | T
+                | {
+                    code?: T;
+                    name?: T;
+                    level?: T;
+                    tags?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        coursesPrograms?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              tabs?:
+                | T
+                | {
+                    tabLabel?: T;
+                    cards?:
+                      | T
+                      | {
+                          title?: T;
+                          price?: T;
+                          priceSuffix?: T;
+                          featured?: T;
+                          details?:
+                            | T
+                            | {
+                                label?: T;
+                                value?: T;
+                                id?: T;
+                              };
+                          buttonLabel?: T;
+                          buttonUrl?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        processSteps?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              steps?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faculty?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              instructors?:
+                | T
+                | {
+                    photo?: T;
+                    name?: T;
+                    languages?: T;
+                    bio?: T;
+                    profileUrl?: T;
+                    testimonial?:
+                      | T
+                      | {
+                          quote?: T;
+                          rating?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        studentStories?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    avatar?: T;
+                    name?: T;
+                    meta?: T;
+                    rating?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricing?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              yearlyDiscountLabel?: T;
+              plans?:
+                | T
+                | {
+                    label?: T;
+                    featured?: T;
+                    monthlyPrice?: T;
+                    yearlyPrice?: T;
+                    priceSuffix?: T;
+                    yearlySuffix?: T;
+                    features?:
+                      | T
+                      | {
+                          text?: T;
+                          included?: T;
+                          id?: T;
+                        };
+                    buttonLabel?: T;
+                    buttonUrl?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        certifications?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              certifications?:
+                | T
+                | {
+                    icon?: T;
+                    emoji?: T;
+                    name?: T;
+                    meta?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        selfAssessment?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    options?:
+                      | T
+                      | {
+                          text?: T;
+                          score?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              results?:
+                | T
+                | {
+                    minScore?: T;
+                    maxScore?: T;
+                    emoji?: T;
+                    level?: T;
+                    recommendation?: T;
+                    recommendationUrl?: T;
+                    description?: T;
+                    ctaLabel?: T;
+                    ctaUrl?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contact?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              form?: T;
+              locationName?: T;
+              locationAddress?: T;
+              mapUrl?: T;
+              phone?: T;
+              email?: T;
+              hours?: T;
+              socials?:
+                | T
+                | {
+                    platform?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        aboutMission?:
+          | T
+          | {
+              missionEyebrow?: T;
+              missionHeading?: T;
+              missionText?: T;
+              visionEyebrow?: T;
+              visionHeading?: T;
+              visionText?: T;
+              values?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutTimeline?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              milestones?:
+                | T
+                | {
+                    year?: T;
+                    title?: T;
+                    description?: T;
+                    emoji?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutTeam?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              members?:
+                | T
+                | {
+                    photo?: T;
+                    name?: T;
+                    role?: T;
+                    bio?: T;
+                    languages?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutCta?:
+          | T
+          | {
+              heading?: T;
+              subtext?: T;
+              primaryLabel?: T;
+              primaryUrl?: T;
+              secondaryLabel?: T;
+              secondaryUrl?: T;
+              badges?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        languagesHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              searchPlaceholder?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        languagesGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              filterLabel?: T;
+              languages?:
+                | T
+                | {
+                    flag?: T;
+                    code?: T;
+                    name?: T;
+                    nativeName?: T;
+                    region?: T;
+                    level?: T;
+                    students?: T;
+                    instructors?: T;
+                    tags?:
+                      | T
+                      | {
+                          tag?: T;
+                          id?: T;
+                        };
+                    featured?: T;
+                    url?: T;
+                    color?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        languageWhy?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        languageCta?:
+          | T
+          | {
+              heading?: T;
+              subtext?: T;
+              primaryLabel?: T;
+              primaryUrl?: T;
+              secondaryLabel?: T;
+              secondaryUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        coursesHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        coursesList?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              courses?:
+                | T
+                | {
+                    flag?: T;
+                    language?: T;
+                    title?: T;
+                    format?: T;
+                    level?: T;
+                    duration?: T;
+                    sessions?: T;
+                    classSize?: T;
+                    price?: T;
+                    pricePeriod?: T;
+                    featured?: T;
+                    url?: T;
+                    tags?:
+                      | T
+                      | {
+                          tag?: T;
+                          id?: T;
+                        };
+                    highlights?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        coursesCompare?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              formats?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    bestFor?: T;
+                    price?: T;
+                    featured?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        coursesCta?:
+          | T
+          | {
+              heading?: T;
+              subtext?: T;
+              primaryLabel?: T;
+              primaryUrl?: T;
+              secondaryLabel?: T;
+              secondaryUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        facultyHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        facultyGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              instructors?:
+                | T
+                | {
+                    photo?: T;
+                    name?: T;
+                    role?: T;
+                    languages?: T;
+                    experience?: T;
+                    nationality?: T;
+                    bio?: T;
+                    profileUrl?: T;
+                    specialisms?:
+                      | T
+                      | {
+                          tag?: T;
+                          id?: T;
+                        };
+                    certifications?:
+                      | T
+                      | {
+                          cert?: T;
+                          id?: T;
+                        };
+                    testimonial?:
+                      | T
+                      | {
+                          quote?: T;
+                          studentName?: T;
+                          studentMeta?: T;
+                          rating?: T;
+                        };
+                    featured?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        facultyPhilosophy?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              standards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        facultyJoin?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              perks?:
+                | T
+                | {
+                    icon?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaUrl?: T;
+              secondaryLabel?: T;
+              secondaryUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        pricingHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingPlans?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              yearlyDiscountLabel?: T;
+              plans?:
+                | T
+                | {
+                    label?: T;
+                    description?: T;
+                    featured?: T;
+                    monthlyPrice?: T;
+                    yearlyPrice?: T;
+                    priceSuffix?: T;
+                    yearlySuffix?: T;
+                    features?:
+                      | T
+                      | {
+                          text?: T;
+                          included?: T;
+                          highlight?: T;
+                          id?: T;
+                        };
+                    buttonLabel?: T;
+                    buttonUrl?: T;
+                    badge?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingAddOns?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              addons?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    price?: T;
+                    pricePeriod?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingFaq?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingGuarantee?:
+          | T
+          | {
+              heading?: T;
+              subtext?: T;
+              guarantees?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        pricingCta?:
+          | T
+          | {
+              heading?: T;
+              subtext?: T;
+              primaryLabel?: T;
+              primaryUrl?: T;
+              secondaryLabel?: T;
+              secondaryUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactHero?:
+          | T
+          | {
+              eyebrow?: T;
+              headingMain?: T;
+              headingAccent?: T;
+              subtext?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactFormSection?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              subtext?: T;
+              form?: T;
+              locationName?: T;
+              locationAddress?: T;
+              mapUrl?: T;
+              contactDetails?:
+                | T
+                | {
+                    type?: T;
+                    label?: T;
+                    value?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              socials?:
+                | T
+                | {
+                    platform?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactOffices?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              offices?:
+                | T
+                | {
+                    emoji?: T;
+                    name?: T;
+                    address?: T;
+                    phone?: T;
+                    email?: T;
+                    hours?: T;
+                    mapUrl?: T;
+                    featured?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactFaq?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1637,6 +3314,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  /**
+   * Upload your site logo. Recommended size: 200x60px.
+   */
+  logo?: (string | null) | Media;
   navItems?:
     | {
         link: {
@@ -1657,6 +3338,26 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  /**
+   * The call-to-action button displayed on the right side of the header.
+   */
+  ctaButton: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1666,6 +3367,24 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  /**
+   * Upload your footer logo. Recommended size: 200x60px.
+   */
+  logo?: (string | null) | Media;
+  newsletter?: {
+    icon?: (string | null) | Media;
+    headingMain?: string | null;
+    headingAccent?: string | null;
+    subtext?: string | null;
+    badgeText?: string | null;
+    languageOptions?:
+      | {
+          language?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    buttonText?: string | null;
+  };
   navItems?:
     | {
         link: {
@@ -1686,6 +3405,64 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyrightText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  /**
+   * Add third-party tracking scripts. These are injected directly into your site.
+   */
+  scripts?: {
+    /**
+     * Scripts injected inside <head>. Use for Google Tag Manager, Meta Pixel, analytics init scripts, etc.
+     */
+    headScripts?:
+      | {
+          label?: string | null;
+          position?: ('start' | 'end') | null;
+          /**
+           * Paste the full <script> tag or inline JS. Supports <script>, <noscript>, and <link> tags.
+           */
+          script?: string | null;
+          enabled?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Scripts injected immediately after <body> opens. Use for Google Tag Manager noscript fallback, etc.
+     */
+    bodyStartScripts?:
+      | {
+          label?: string | null;
+          /**
+           * Paste the full <script> or <noscript> tag.
+           */
+          script?: string | null;
+          enabled?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Scripts injected just before </body> closes. Use for chat widgets, lazy-loaded analytics, Intercom, Crisp, etc.
+     */
+    footerScripts?:
+      | {
+          label?: string | null;
+          /**
+           * Paste the full <script> tag. Loads after page content — ideal for non-critical third-party scripts.
+           */
+          script?: string | null;
+          enabled?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1694,6 +3471,7 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
   navItems?:
     | T
     | {
@@ -1708,6 +3486,19 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  ctaButton?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1717,6 +3508,23 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
+  newsletter?:
+    | T
+    | {
+        icon?: T;
+        headingMain?: T;
+        headingAccent?: T;
+        subtext?: T;
+        badgeText?: T;
+        languageOptions?:
+          | T
+          | {
+              language?: T;
+              id?: T;
+            };
+        buttonText?: T;
+      };
   navItems?:
     | T
     | {
@@ -1730,6 +3538,45 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  copyrightText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  scripts?:
+    | T
+    | {
+        headScripts?:
+          | T
+          | {
+              label?: T;
+              position?: T;
+              script?: T;
+              enabled?: T;
+              id?: T;
+            };
+        bodyStartScripts?:
+          | T
+          | {
+              label?: T;
+              script?: T;
+              enabled?: T;
+              id?: T;
+            };
+        footerScripts?:
+          | T
+          | {
+              label?: T;
+              script?: T;
+              enabled?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

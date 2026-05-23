@@ -1,8 +1,19 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { DM_Sans, Playfair_Display } from 'next/font/google'
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -15,18 +26,29 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { ScriptInjector } from '@/globals/SiteSettings/ScriptInjector'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(dmSans.variable, playfairDisplay.variable)}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
+        <ScriptInjector location="body-start" />
+        <ScriptInjector location="head-start" />
+        <ScriptInjector location="head-end" />
+
+        {/* afterInteractive — runs after hydration */}
+
         <Providers>
           <AdminBar
             adminBarProps={{
@@ -38,6 +60,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer />
         </Providers>
+        <ScriptInjector location="body-end" />
       </body>
     </html>
   )

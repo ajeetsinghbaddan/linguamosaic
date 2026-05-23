@@ -20,6 +20,58 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { HeroStatsBlock } from '@/blocks/HeroStats/config'
+import { AboutIntroBlock } from '@/blocks/AboutIntro/config'
+import { LanguagesOfferedBlock } from '@/blocks/LanguagesOffered/config'
+import { CoursesProgramsBlock } from '@/blocks/CoursesPrograms/config'
+import { ProcessStepsBlock } from '@/blocks/ProcessSteps/config'
+import { FacultyBlock } from '@/blocks/FacultyBlock/config'
+import { StudentStoriesBlock } from '@/blocks/StudentStories/config'
+import { PricingBlock } from '@/blocks/PricingBlock/config'
+import { CertificationsBlock } from '@/blocks/Certifications/config'
+import { SelfAssessmentBlock } from '@/blocks/SelfAssessment/config'
+import { ContactBlock } from '@/blocks/ContactBlock/config'
+import {
+  AboutCtaBlock,
+  AboutHeroBlock,
+  AboutMissionBlock,
+  AboutTeamBlock,
+  AboutTimelineBlock,
+} from '@/blocks/AboutPage/config'
+
+import {
+  LanguagesHeroBlock,
+  LanguagesGridBlock,
+  LanguageWhyBlock,
+  LanguageCtaBlock,
+} from '@/blocks/LanguagesPage/config'
+import {
+  CoursesCompareBlock,
+  CoursesCtaBlock,
+  CoursesHeroBlock,
+  CoursesListBlock,
+} from '@/blocks/CoursesPage/config'
+
+import {
+  FacultyGridBlock,
+  FacultyHeroBlock,
+  FacultyJoinBlock,
+  FacultyPhilosophyBlock,
+} from '@/blocks/FacultyPage/config'
+import {
+  PricingAddOnsBlock,
+  PricingCtaBlock,
+  PricingFaqBlock,
+  PricingGuaranteeBlock,
+  PricingHeroBlock,
+  PricingPlansBlock,
+} from '@/blocks/PricingPage/config'
+import {
+  ContactFaqBlock,
+  ContactFormSectionBlock,
+  ContactHeroBlock,
+  ContactOfficesBlock,
+} from '@/blocks/ContactPage/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -72,7 +124,51 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                HeroStatsBlock,
+                AboutIntroBlock,
+                LanguagesOfferedBlock,
+                CoursesProgramsBlock,
+                ProcessStepsBlock,
+                FacultyBlock,
+                StudentStoriesBlock,
+                PricingBlock,
+                CertificationsBlock,
+                SelfAssessmentBlock,
+                ContactBlock,
+                AboutHeroBlock,
+                AboutMissionBlock,
+                AboutTimelineBlock,
+                AboutTeamBlock,
+                AboutCtaBlock,
+                LanguagesHeroBlock,
+                LanguagesGridBlock,
+                LanguageWhyBlock,
+                LanguageCtaBlock,
+                CoursesHeroBlock,
+                CoursesListBlock,
+                CoursesCompareBlock,
+                CoursesCtaBlock,
+                FacultyHeroBlock,
+                FacultyGridBlock,
+                FacultyPhilosophyBlock,
+                FacultyJoinBlock,
+                PricingHeroBlock,
+                PricingPlansBlock,
+                PricingAddOnsBlock,
+                PricingFaqBlock,
+                PricingGuaranteeBlock,
+                PricingCtaBlock,
+                ContactHeroBlock,
+                ContactFormSectionBlock,
+                ContactOfficesBlock,
+                ContactFaqBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

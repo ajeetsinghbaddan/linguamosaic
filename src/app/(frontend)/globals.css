@@ -20,6 +20,9 @@
     font-weight: unset;
     font-size: unset;
   }
+  .swiper-pagination-bullet-active {
+    background-color: var(--color-theme-sage) !important;
+  }
 }
 
 @plugin "@tailwindcss/typography";
@@ -212,6 +215,15 @@
   body {
     @apply bg-background text-foreground min-h-[100vh] flex flex-col;
   }
+  :root {
+    --font-dm-sans: 'DM Sans', sans-serif;
+    --font-playfair: 'Playfair Display', serif;
+  }
+
+  body {
+    font-family: var(--font-dm-sans);
+  }
+
 }
 
 html {
@@ -221,4 +233,38 @@ html {
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
+}
+
+@theme {
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-playfair);
+
+  /* Brand Colors */
+  --color-theme-brown: #C4673A;
+  --color-theme-black: #1C2B1C;
+  --color-theme-sage: #5C7A5C;
+  --color-theme-sand: #FAF8F3;
+  --color-theme-text: #353535;
+  --color-theme-yellow: #E8C96A;
+  --color-theme-light-green: #7A9E7A;
+  --color-theme-border: #D9D9D9;
+}
+
+@keyframes tabPill {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-tab-pill {
+  animation: tabPill 0.2s ease-out forwards;
+}
+
+.animate-card-in {
+  opacity: 0;
+  animation: cardIn 0.3s ease-out forwards;
 }

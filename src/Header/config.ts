@@ -10,6 +10,15 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Logo',
+      admin: {
+        description: 'Upload your site logo. Recommended size: 200x60px.',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
@@ -24,6 +33,19 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'ctaButton',
+      type: 'group',
+      label: 'CTA Button',
+      admin: {
+        description: 'The call-to-action button displayed on the right side of the header.',
+      },
+      fields: [
+        link({
+          appearances: false,
+        }),
+      ],
     },
   ],
   hooks: {
