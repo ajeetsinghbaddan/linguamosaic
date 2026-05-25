@@ -3377,6 +3377,13 @@ export interface Footer {
     headingAccent?: string | null;
     subtext?: string | null;
     badgeText?: string | null;
+    /**
+     * Select a form created in the Forms collection. If none selected, the default inline form is used.
+     */
+    form?: (string | null) | Form;
+    /**
+     * Used only when no Payload form is selected above.
+     */
     languageOptions?:
       | {
           language?: string | null;
@@ -3517,6 +3524,7 @@ export interface FooterSelect<T extends boolean = true> {
         headingAccent?: T;
         subtext?: T;
         badgeText?: T;
+        form?: T;
         languageOptions?:
           | T
           | {

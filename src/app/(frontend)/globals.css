@@ -268,3 +268,49 @@ html[data-theme='light'] {
   opacity: 0;
   animation: cardIn 0.3s ease-out forwards;
 }
+
+/* ── Footer newsletter form layout override ── */
+.newsletter-form-footer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .newsletter-form-footer form {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .newsletter-form-footer form > * {
+    flex: 1;
+  }
+
+  .newsletter-form-footer form button[type='submit'] {
+    flex: 0 0 auto !important;
+  }
+}
+
+.newsletter-form-footer form > div {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.newsletter-form-footer label {
+  display: none !important;
+}
+
+.newsletter-form-footer p {
+  display: none !important;
+}
+
+/* Confirmation message */
+.newsletter-form-footer [class*='confirmation'] {
+  color: var(--color-theme-yellow);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem 0;
+}

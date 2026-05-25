@@ -2,11 +2,11 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
-
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import type { Footer as FooterType, Media } from '@/payload-types'
 import { NewsletterForm } from './NewsletterForm'
+import { NewsletterFormPayload } from './NewsletterFormPayload'
 
 export async function Footer() {
   const footerData: FooterType = await getCachedGlobal('footer', 1)()
@@ -19,6 +19,19 @@ export async function Footer() {
 
   const icon = newsletter?.icon as Media | null | undefined
   const logo = footerData?.logo as Media | null | undefined
+
+  // Get form ID if a Payload form is selected
+  const formRef = (newsletter as any)?.form
+  const formId =
+    typeof formRef === 'object' && formRef !== null
+      ? String((formRef as any).id)
+      : formRef
+        ? String(formRef)
+        : null
+
+  // Language options for the custom form
+  const languageOptions =
+    newsletter?.languageOptions?.map((l) => l.language).filter((l): l is string => Boolean(l)) || []
 
   return (
     <footer className="mt-auto">
@@ -61,22 +74,25 @@ export async function Footer() {
             </div>
           )}
 
-          {/* Form */}
-          <NewsletterForm
-            languageOptions={
-              newsletter?.languageOptions
-                ?.map((l) => l.language)
-                .filter((l): l is string => Boolean(l)) || []
-            }
-            buttonText={newsletter?.buttonText || 'Subscribe'}
-          />
+          {/* Form — uses Payload form API if form selected, otherwise inline */}
+          {formId ? (
+            <NewsletterFormPayload
+              formId={formId}
+              languageOptions={languageOptions}
+              buttonText={newsletter?.buttonText || 'Subscribe'}
+            />
+          ) : (
+            <NewsletterForm
+              languageOptions={languageOptions}
+              buttonText={newsletter?.buttonText || 'Subscribe'}
+            />
+          )}
         </div>
       </div>
 
       {/* ── Footer Bar ── */}
       <div className="bg-theme-black border-t border-white/10 px-4 py-6">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Logo */}
           <Link href="/">
             {logo?.url ? (
               <Image
@@ -90,8 +106,6 @@ export async function Footer() {
               <Logo />
             )}
           </Link>
-
-          {/* Nav */}
           <nav className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
             {navItems.map(({ link }, i) => (
               <CMSLink

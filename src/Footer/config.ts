@@ -1,5 +1,4 @@
 import type { GlobalConfig } from 'payload'
-
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 
@@ -18,7 +17,6 @@ export const Footer: GlobalConfig = {
         description: 'Upload your footer logo. Recommended size: 200x60px.',
       },
     },
-    // Newsletter Section
     {
       name: 'newsletter',
       type: 'group',
@@ -55,10 +53,26 @@ export const Footer: GlobalConfig = {
           label: 'Badge Text',
           defaultValue: '🎁 Sign up today and get 10% off your first course',
         },
+        // ── Replaced languageOptions + buttonText with Payload form ──
+        {
+          name: 'form',
+          type: 'relationship',
+          relationTo: 'forms',
+          label: 'Newsletter Form',
+          required: false,
+          admin: {
+            description:
+              'Select a form created in the Forms collection. If none selected, the default inline form is used.',
+          },
+        },
+        // Keep these as fallback when no form is selected
         {
           name: 'languageOptions',
           type: 'array',
-          label: 'Language Interest Options',
+          label: 'Language Interest Options (fallback)',
+          admin: {
+            description: 'Used only when no Payload form is selected above.',
+          },
           fields: [
             {
               name: 'language',
@@ -77,13 +91,11 @@ export const Footer: GlobalConfig = {
         {
           name: 'buttonText',
           type: 'text',
-          label: 'Subscribe Button Text',
+          label: 'Subscribe Button Text (fallback)',
           defaultValue: 'Subscribe',
         },
       ],
     },
-
-    // Footer Nav
     {
       name: 'navItems',
       type: 'array',
@@ -100,8 +112,6 @@ export const Footer: GlobalConfig = {
         },
       },
     },
-
-    // Copyright
     {
       name: 'copyrightText',
       type: 'text',
