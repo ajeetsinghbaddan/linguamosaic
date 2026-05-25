@@ -28,6 +28,9 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { ScriptInjector } from '@/globals/SiteSettings/ScriptInjector'
 
+import { SchemaScript } from '@/components/SchemaScript'
+import { generateWebsiteSchema } from '@/utilities/generateSchema'
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
@@ -41,6 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <SchemaScript schema={generateWebsiteSchema()} />
       </head>
       <body>
         <ScriptInjector location="body-start" />
