@@ -52,6 +52,8 @@ import { ContactFormSection } from './ContactPage/ContactFormSection.server'
 import { ContactOffices } from './ContactPage/ContactOffices'
 import { ContactFaq } from './ContactPage/ContactFaq'
 
+import { PageTitleBlock } from './PageTitle/Component'
+
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
@@ -96,6 +98,7 @@ const blockComponents = {
   contactFormSection: ContactFormSection,
   contactOffices: ContactOffices,
   contactFaq: ContactFaq,
+  pageTitle: PageTitleBlock,
 }
 
 export const RenderBlocks: React.FC<{

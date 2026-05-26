@@ -72,6 +72,7 @@ import {
   ContactHeroBlock,
   ContactOfficesBlock,
 } from '@/blocks/ContactPage/config'
+import { PageTitleBlock } from '@/blocks/PageTitle/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -168,6 +169,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ContactFormSectionBlock,
                 ContactOfficesBlock,
                 ContactFaqBlock,
+                PageTitleBlock,
               ],
               required: true,
               admin: {

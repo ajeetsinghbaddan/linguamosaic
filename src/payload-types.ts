@@ -1017,6 +1017,24 @@ export interface Page {
         blockName?: string | null;
         blockType: 'contactFaq';
       }
+    | {
+        eyebrow?: string | null;
+        title: string;
+        titleAccent?: string | null;
+        description?: string | null;
+        breadcrumbs?:
+          | {
+              label: string;
+              url?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        theme?: ('sand' | 'white' | 'dark' | 'sage') | null;
+        showDecoration?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pageTitle';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -2763,6 +2781,25 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        pageTitle?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              titleAccent?: T;
+              description?: T;
+              breadcrumbs?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              theme?: T;
+              showDecoration?: T;
               id?: T;
               blockName?: T;
             };
